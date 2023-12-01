@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Drawing">
+    <!-- drawing view -->
+
+    <com.example.kotartisan.DrawingView
+        android:id="@+id/drawingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:contentDescription="Draw"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="322dp" />
+
+    <ImageButton
+        android:id="@+id/saveButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@android:drawable/checkbox_on_background"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="12dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        tools:layout_editor_absoluteX="90dp"
+        tools:layout_editor_absoluteY="12dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/shrinkButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@android:drawable/arrow_down_float"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="12dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/growButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@android:drawable/arrow_up_float"
+        tools:layout_editor_absoluteX="230dp"
+        tools:layout_editor_absoluteY="12dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/undoButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@android:drawable/btn_dialog"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="12dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/starButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@android:drawable/btn_star"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="570dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/circleButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@android:drawable/radiobutton_off_background"
+        tools:layout_editor_absoluteX="200dp"
+        tools:layout_editor_absoluteY="570dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/triangleButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@android:drawable/ic_media_play"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="570dp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/squareButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@android:drawable/checkbox_off_background"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="570dp"
+        tools:ignore="MissingConstraints" />
+
+    <!--buttons (shape, color, delete, save, shrink, grow, undo)
+    colorButton
+     -->
+</androidx.constraintlayout.widget.ConstraintLayout>
