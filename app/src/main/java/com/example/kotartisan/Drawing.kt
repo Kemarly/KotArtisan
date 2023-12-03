@@ -8,11 +8,8 @@ import android.view.View
 import android.widget.ImageButton
 import com.example.kotartisan.DrawingView
 
-private lateinit var drawingView: Drawing
-
-
 class Drawing : AppCompatActivity() {
-
+    private lateinit var drawingView: DrawingView
     private lateinit var deleteButton: ImageButton
     private lateinit var saveButton: ImageButton
     private lateinit var shrinkButton: ImageButton
@@ -27,7 +24,7 @@ class Drawing : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing)
 
-        drawingView = findViewById<View>(R.id.drawingView) as Drawing
+        drawingView = findViewById(R.id.drawingView)
         deleteButton = findViewById(R.id.deleteButton)
         saveButton = findViewById(R.id.saveButton)
         shrinkButton = findViewById(R.id.shrinkButton)
@@ -51,5 +48,10 @@ class Drawing : AppCompatActivity() {
         shrinkButton.setOnClickListener { drawingView.shrinkShape() }
         growButton.setOnClickListener { drawingView.growShape() }
         undoButton.setOnClickListener { drawingView.undo() }*/
+        starButton.setOnClickListener {}
+        triangleButton.setOnClickListener {}
+        squareButton.setOnClickListener {}
+        circleButton.setOnClickListener {}
+
     }
 }
