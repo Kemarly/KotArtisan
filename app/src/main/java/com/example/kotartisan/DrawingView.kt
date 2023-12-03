@@ -23,7 +23,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         paint.strokeJoin = Paint.Join.ROUND
         paint.strokeWidth = 5f
     }
-    fun addShape(color: Int, size: Float) {
+    fun addShape(color: Int, size: Float, path: Path) {
         shapes.add(ShapeData(Path(currentShape), color, size))
         currentShape.reset()
         invalidate()
@@ -101,5 +101,3 @@ data class ShapeData(
     val color: Int,
     val size: Float = 10.0f
 )
-{
-}

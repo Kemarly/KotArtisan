@@ -48,10 +48,14 @@ class Drawing : AppCompatActivity() {
         shrinkButton.setOnClickListener { drawingView.shrinkShape() }
         growButton.setOnClickListener { drawingView.growShape() }
         undoButton.setOnClickListener { drawingView.undo() }*/
-        starButton.setOnClickListener {}
-        triangleButton.setOnClickListener {}
-        squareButton.setOnClickListener {}
-        circleButton.setOnClickListener {}
+        starButton.setOnClickListener {drawStar()}
+        triangleButton.setOnClickListener {drawTriangle()}
+        squareButton.setOnClickListener {drawSquare()}
+        circleButton.setOnClickListener {drawCircle()}
 
     }
 }
+private fun drawStar() {}
+private fun drawTriangle() {}
+private fun drawSquare() {}
+private fun drawCircle() {}
