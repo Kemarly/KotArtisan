@@ -6,15 +6,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
+import com.example.kotartisan.DrawingView
 
 private lateinit var drawingView: Drawing
-private lateinit var deleteButton: ImageButton
-private lateinit var saveButton: ImageButton
-private lateinit var shrinkButton: ImageButton
-private lateinit var growButton: ImageButton
-private lateinit var undoButton: ImageButton
+
 
 class Drawing : AppCompatActivity() {
+
+    private lateinit var deleteButton: ImageButton
+    private lateinit var saveButton: ImageButton
+    private lateinit var shrinkButton: ImageButton
+    private lateinit var growButton: ImageButton
+    private lateinit var undoButton: ImageButton
+    private lateinit var starButton: ImageButton
+    private lateinit var circleButton: ImageButton
+    private lateinit var squareButton: ImageButton
+    private lateinit var triangleButton: ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing)
@@ -25,6 +33,10 @@ class Drawing : AppCompatActivity() {
         shrinkButton = findViewById(R.id.shrinkButton)
         growButton = findViewById(R.id.growButton)
         undoButton = findViewById(R.id.undoButton)
+        starButton = findViewById(R.id.starButton)
+        circleButton = findViewById(R.id.circleButton)
+        squareButton = findViewById(R.id.squareButton)
+        triangleButton = findViewById(R.id.triangleButton)
 
         /*deleteButton.setOnClickListener { drawingView.clearDrawing() }
         saveButton.setOnClickListener {
