@@ -22,12 +22,14 @@ class Drawing : AppCompatActivity() {
     private lateinit var squareButton: ImageButton
     private lateinit var triangleButton: ImageButton
     private val points = mutableListOf<Pair<Float, Float>>()
-    private var centerX = drawingView.width / 2f
-    private var centerY = drawingView.height / 2f
+    private var centerX = 0f
+    private var centerY = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing)
+        centerY = drawingView.height / 2f
+        centerX = drawingView.width / 2f
 
         drawingView = findViewById(R.id.drawingView)
         deleteButton = findViewById(R.id.deleteButton)
@@ -39,8 +41,6 @@ class Drawing : AppCompatActivity() {
         circleButton = findViewById(R.id.circleButton)
         squareButton = findViewById(R.id.squareButton)
         triangleButton = findViewById(R.id.triangleButton)
-
-
 
         /*deleteButton.setOnClickListener { drawingView.clearDrawing() }
         saveButton.setOnClickListener {
@@ -59,7 +59,6 @@ class Drawing : AppCompatActivity() {
         triangleButton.setOnClickListener {drawTriangle()}
         squareButton.setOnClickListener {drawSquare()}
         circleButton.setOnClickListener {drawCircle()}
-
     }
 }
 private fun drawStar()
@@ -72,8 +71,6 @@ private fun drawStar()
 private fun createStarPath(): Path
 {
     val path = Path()
-
-
     val size = 100f
     for (i in 0 until 5)
     {
@@ -90,14 +87,11 @@ private fun drawTriangle()
     val triangleColor = Color.BLUE
     val triangleSize = Size(10, 10)
 
-    // Create a Path for the triangle
     val trianglePath = createTrianglePath()
 
-    // Add the triangle to the DrawingView
     DrawingView.addShape(triangleColor, triangleSize, trianglePath)
 }
 
-// Function to create a Path representing a triangle
 private fun createTrianglePath(): Path {
     val path = Path()
     val size = 100f
@@ -121,10 +115,8 @@ private fun drawSquare()
     val squareColor = Color.BLUE
     val squareSize = Size(10, 10)
 
-    // Create a Path for the square
     val squarePath = createSquarePath()
 
-    // Add the square to the DrawingView
     DrawingView.addShape(squareColor, squareSize, squarePath)
 }
 
