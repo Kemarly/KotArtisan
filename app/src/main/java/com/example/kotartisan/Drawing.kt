@@ -22,8 +22,9 @@ class Drawing : AppCompatActivity() {
     private lateinit var squareButton: ImageButton
     private lateinit var triangleButton: ImageButton
     private val points = mutableListOf<Pair<Float, Float>>()
-    private var centerX = 0f
-    private var centerY = 0f
+    private var centerX = drawingView.width / 2f
+    private var centerY = drawingView.height / 2f
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing)
@@ -39,8 +40,7 @@ class Drawing : AppCompatActivity() {
         squareButton = findViewById(R.id.squareButton)
         triangleButton = findViewById(R.id.triangleButton)
 
-        centerX = drawingView.width / 2f
-        centerY = drawingView.height / 2f
+
 
         /*deleteButton.setOnClickListener { drawingView.clearDrawing() }
         saveButton.setOnClickListener {
