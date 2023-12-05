@@ -1,18 +1,14 @@
 package com.example.kotartisan
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.ColorSpace.Rgb
 import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Size
-import android.view.View
 import android.widget.ImageButton
-import com.example.kotartisan.DrawingView
 import java.lang.Math.cos
 import java.lang.Math.sin
+
 
 class Drawing : AppCompatActivity() {
     private lateinit var drawingView: DrawingView
@@ -70,26 +66,17 @@ private fun drawStar()
 {
     val starColor = Color.BLUE
     val starSize = Size(10, 10)
-
-    // Create a Path for the star
     val starPath = createStarPath()
-
-    // Add the star to the DrawingView
-    drawingView.addShape(starColor, starSize, starPath)
+    DrawingView.addShape(starColor, starSize, starPath)
 }
-private fun createStarPath(): Path {
-    // Implement the logic to create a star-shaped Path
-    // This will depend on your specific requirements for the star shape
-
+private fun createStarPath(): Path
+{
     val path = Path()
-    // Add points to the path to create a star
-    // Example: path.moveTo(x1, y1)
-    //          path.lineTo(x2, y2)
-    //          ...
-    //          path.close()
+
 
     val size = 100f
-    for (i in 0 until 5) {
+    for (i in 0 until 5)
+    {
         val angle = Math.toRadians((i * 144).toDouble())
         val x = centerX + size * cos(angle).toFloat()
         val y = centerY + size * sin(angle).toFloat()
@@ -100,14 +87,14 @@ private fun createStarPath(): Path {
 }
 private fun drawTriangle()
 {
-    val starColor = Color.BLUE
-    val starSize = Size(10, 10)
+    val triangleColor = Color.BLUE
+    val triangleSize = Size(10, 10)
 
     // Create a Path for the triangle
     val trianglePath = createTrianglePath()
 
     // Add the triangle to the DrawingView
-    drawingView.addShape(triangleColor, triangleSize, trianglePath)
+    DrawingView.addShape(triangleColor, triangleSize, trianglePath)
 }
 
 // Function to create a Path representing a triangle
@@ -131,18 +118,18 @@ private fun createTrianglePath(): Path {
 
 private fun drawSquare()
 {
-    val starColor = Color.BLUE
-    val starSize = Size(10, 10)
+    val squareColor = Color.BLUE
+    val squareSize = Size(10, 10)
 
     // Create a Path for the square
     val squarePath = createSquarePath()
 
     // Add the square to the DrawingView
-    drawingView.addShape(squareColor, squareSize, squarePath)
+    DrawingView.addShape(squareColor, squareSize, squarePath)
 }
 
-// Function to create a Path representing a square
-private fun createSquarePath(): Path {
+private fun createSquarePath(): Path
+{
     val path = Path()
     val size = 100f
     val x1 = centerX - size / 2
@@ -165,24 +152,14 @@ private fun createSquarePath(): Path {
 
 private fun drawCircle()
 {
-    val starColor = Color.BLUE
-    val starSize = Size(10, 10)
-
-    // Create a Path for the circle
+    val circleColor = Color.BLUE
+    val circleSize = Size(10, 10)
     val circlePath = createCirclePath()
-
-    // Add the circle to the DrawingView
-    drawingView.addShape(circleColor, circleSize, circlePath)
+    DrawingView.addShape(circleColor, circleSize, circlePath)
 }
 
-// Function to create a Path representing a circle
 private fun createCirclePath(): Path {
     val path = Path()
-    // Use a single point to represent the center of the circle
-    // Example:
     path.addCircle(centerX, centerY, 5f, Path.Direction.CW)
-
-    // Adjust the logic based on your specific requirements for the circle shape
-
     return path
 }

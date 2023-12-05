@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
+import android.util.Size
 import android.view.MotionEvent
 import android.view.View
 
@@ -58,7 +59,11 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         return true
     }
 
-    companion object {}
+    companion object {
+        fun addShape(Color: Int, Size: Size, Path: Path) {
+
+        }
+    }
     fun setCurrentShape(shape: Path) {
         currentShape = shape
     }
