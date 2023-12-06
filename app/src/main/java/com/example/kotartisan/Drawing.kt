@@ -28,6 +28,8 @@ class Drawing : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing)
+
+        drawingView = findViewById(R.id.drawingView) // Move this line here
         centerY = drawingView.height / 2f
         centerX = drawingView.width / 2f
 
