@@ -8,7 +8,7 @@ import android.util.Size
 import android.widget.ImageButton
 import java.lang.Math.cos
 import java.lang.Math.sin
-
+import com.example.kotartisan.DrawingView
 
 class Drawing : AppCompatActivity() {
     private lateinit var drawingView: DrawingView
@@ -70,15 +70,26 @@ private fun drawStar()
 }
 private fun createStarPath(): Path
 {
+    var centerX = 0f
+    var centerY = 0f
     val path = Path()
     val size = 100f
-    for (i in 0 until 5)
-    {
-        val angle = Math.toRadians((i * 144).toDouble())
-        val x = centerX + size * cos(angle).toFloat()
-        val y = centerY + size * sin(angle).toFloat()
-        points.add(Pair(x, y))
+    val radius = size / 3f
+
+    for (i in 0 until 10) {
+        val angle = Math.toRadians((i * 36).toDouble())
+        val radius = if (i % 2 == 0) size else radius
+        val x = centerX + radius * cos(angle).toFloat()
+        val y = centerY + radius * sin(angle).toFloat()
+
+        if (i == 0) {
+            path.moveTo(x, y)
+        } else {
+            path.lineTo(x, y)
+        }
     }
+
+    path.close()
 
     return path
 }
@@ -86,13 +97,14 @@ private fun drawTriangle()
 {
     val triangleColor = Color.BLUE
     val triangleSize = Size(10, 10)
-
     val trianglePath = createTrianglePath()
 
     DrawingView.addShape(triangleColor, triangleSize, trianglePath)
 }
 
 private fun createTrianglePath(): Path {
+    var centerX = 0f
+    var centerY = 0f
     val path = Path()
     val size = 100f
     val x1 = centerX
@@ -124,6 +136,8 @@ private fun createSquarePath(): Path
 {
     val path = Path()
     val size = 100f
+    var centerX = 0f
+    var centerY = 0f
     val x1 = centerX - size / 2
     val y1 = centerY - size / 2
     val x2 = centerX - size / 2
@@ -151,6 +165,8 @@ private fun drawCircle()
 }
 
 private fun createCirclePath(): Path {
+    var centerX = 0f
+    var centerY = 0f
     val path = Path()
     path.addCircle(centerX, centerY, 5f, Path.Direction.CW)
     return path
