@@ -11,8 +11,8 @@ import android.util.Size
 import android.view.MotionEvent
 import android.view.View
 
-class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) {
-
+class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
+{
     private var currentShape: Path = Path()
     private val paths = ArrayList<Path>()
     private val shapes = ArrayList<ShapeData>()
@@ -82,22 +82,22 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     {
         paths.clear()
         shapes.clear()
+
         invalidate()
     }
 
     fun shrinkShape() {
-        paint.strokeWidth = paint.strokeWidth - 2f
+        paint.strokeWidth = paint.strokeWidth - 5f
         invalidate()
     }
-
     fun growShape() {
-        paint.strokeWidth = paint.strokeWidth + 2f
+        paint.strokeWidth = paint.strokeWidth + 5f
         invalidate()
     }
-
     fun undo() {
-        if (shapes.isNotEmpty()) {
-            shapes.removeAt(shapes.size - 1)
+        if (paths.isNotEmpty()) {
+            paths.removeAt(paths.size - 1)
+            shapes.removeAt(shapes.size -1)
             invalidate()
         }
     }

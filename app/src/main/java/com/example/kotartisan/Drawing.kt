@@ -42,7 +42,7 @@ class Drawing : AppCompatActivity() {
         squareButton = findViewById(R.id.squareButton)
         triangleButton = findViewById(R.id.triangleButton)
 
-        deleteButton.setOnClickListener { drawingView.clearDrawing() }
+        deleteButton.setOnClickListener { drawingView.clearDrawing()}
         saveButton.setOnClickListener{
             val bitmap = Bitmap.createBitmap(
                 drawingView.width,
