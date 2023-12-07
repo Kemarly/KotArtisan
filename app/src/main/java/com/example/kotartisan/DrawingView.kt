@@ -76,7 +76,8 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         paint.strokeWidth = size
     }
 
-    fun clearDrawing() {
+    fun clearDrawing()
+    {
         paths.clear()
         shapes.clear()
         invalidate()

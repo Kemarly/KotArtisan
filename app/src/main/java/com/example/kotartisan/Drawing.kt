@@ -1,14 +1,13 @@
 package com.example.kotartisan
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Size
 import android.widget.ImageButton
-import java.lang.Math.cos
-import java.lang.Math.sin
-import com.example.kotartisan.DrawingView
 
 class Drawing : AppCompatActivity() {
     private lateinit var drawingView: DrawingView
@@ -21,7 +20,6 @@ class Drawing : AppCompatActivity() {
     private lateinit var circleButton: ImageButton
     private lateinit var squareButton: ImageButton
     private lateinit var triangleButton: ImageButton
-    private val points = mutableListOf<Pair<Float, Float>>()
     private var centerX = 0f
     private var centerY = 0f
 
@@ -44,8 +42,8 @@ class Drawing : AppCompatActivity() {
         squareButton = findViewById(R.id.squareButton)
         triangleButton = findViewById(R.id.triangleButton)
 
-        /*deleteButton.setOnClickListener { drawingView.clearDrawing() }
-        saveButton.setOnClickListener {
+        deleteButton.setOnClickListener { drawingView.clearDrawing() }
+        saveButton.setOnClickListener{
             val bitmap = Bitmap.createBitmap(
                 drawingView.width,
                 drawingView.height,
@@ -56,7 +54,7 @@ class Drawing : AppCompatActivity() {
         }
         shrinkButton.setOnClickListener { drawingView.shrinkShape() }
         growButton.setOnClickListener { drawingView.growShape() }
-        undoButton.setOnClickListener { drawingView.undo() }*/
+        undoButton.setOnClickListener { drawingView.undo() }
         starButton.setOnClickListener {drawStar()}
         triangleButton.setOnClickListener {drawTriangle()}
         squareButton.setOnClickListener {drawSquare()}
@@ -72,17 +70,17 @@ private fun drawStar()
 }
 private fun createStarPath(): Path
 {
-    var centerX = 0f
-    var centerY = 0f
+    val centerX = 0f
+    val centerY = 0f
     val path = Path()
     val size = 100f
-    val radius = size / 3f
+    val starRadius = size / 3f
 
     for (i in 0 until 10) {
         val angle = Math.toRadians((i * 36).toDouble())
-        val radius = if (i % 2 == 0) size else radius
-        val x = centerX + radius * cos(angle).toFloat()
-        val y = centerY + radius * sin(angle).toFloat()
+        val radius = if (i % 2 == 0) size else starRadius
+        val x = centerX + radius * kotlin.math.cos(angle).toFloat()
+        val y = centerY + radius * kotlin.math.sin(angle).toFloat()
 
         if (i == 0) {
             path.moveTo(x, y)
@@ -105,18 +103,17 @@ private fun drawTriangle()
 }
 
 private fun createTrianglePath(): Path {
-    var centerX = 0f
-    var centerY = 0f
+    val centerX = 0f
+    val centerY = 0f
     val path = Path()
     val size = 100f
-    val x1 = centerX
     val y1 = centerY - size / 2
     val x2 = centerX - size / 2
     val y2 = centerY + size / 2
     val x3 = centerX + size / 2
     val y3 = centerY + size / 2
 
-    path.moveTo(x1, y1)
+    path.moveTo(centerX, y1)
     path.lineTo(x2, y2)
     path.lineTo(x3, y3)
     path.close()
@@ -138,8 +135,8 @@ private fun createSquarePath(): Path
 {
     val path = Path()
     val size = 100f
-    var centerX = 0f
-    var centerY = 0f
+    val centerX = 0f
+    val centerY = 0f
     val x1 = centerX - size / 2
     val y1 = centerY - size / 2
     val x2 = centerX - size / 2
@@ -167,8 +164,8 @@ private fun drawCircle()
 }
 
 private fun createCirclePath(): Path {
-    var centerX = 0f
-    var centerY = 0f
+    val centerX = 0f
+    val centerY = 0f
     val path = Path()
     path.addCircle(centerX, centerY, 5f, Path.Direction.CW)
     return path
