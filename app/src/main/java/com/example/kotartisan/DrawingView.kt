@@ -1,5 +1,6 @@
 package com.example.kotartisan
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -24,7 +25,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         paint.strokeJoin = Paint.Join.ROUND
         paint.strokeWidth = 5f
     }
-    fun addShape(color: Int, size: Float, path: Path) {
+   /* fun addShape(color: Int, size: Float, path: Path) {
         shapes.add(ShapeData(Path(currentShape), color, size))
         currentShape.reset()
         invalidate()
@@ -34,7 +35,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         shapes.clear()
         shapes.addAll(shapesList)
         invalidate()
-    }
+    }*/
     override fun onDraw(canvas: Canvas) {
         for (shape in shapes) {
             paint.color = shape.color
@@ -44,6 +45,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         canvas.drawPath(currentShape, paint)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val x = event.x
         val y = event.y
@@ -64,7 +66,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
 
         }
     }
-    fun setCurrentShape(shape: Path) {
+   /* fun setCurrentShape(shape: Path) {
         currentShape = shape
     }
 
@@ -75,7 +77,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     fun setCurrentSize(size: Float) {
         paint.strokeWidth = size
     }
-
+*/
     fun clearDrawing()
     {
         paths.clear()
