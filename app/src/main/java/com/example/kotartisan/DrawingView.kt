@@ -17,13 +17,17 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     private val paths = ArrayList<Path>()
     private val shapes = ArrayList<ShapeData>()
     private val paint = Paint()
-
+    private var newColor: Int = Color.BLACK
     init {
         paint.isAntiAlias = true
         paint.color = Color.BLACK
         paint.style = Paint.Style.STROKE
         paint.strokeJoin = Paint.Join.ROUND
         paint.strokeWidth = 5f
+    }
+    fun changeColor(color: Int) {
+        newColor = color
+        paint.color = newColor
     }
    /* fun addShape(color: Int, size: Float, path: Path) {
         shapes.add(ShapeData(Path(currentShape), color, size))
@@ -101,6 +105,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
             invalidate()
         }
     }
+
 }
 
 data class ShapeData(
