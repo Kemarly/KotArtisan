@@ -8,27 +8,36 @@
 
     <TextView
         android:id="@+id/Artisan"
-        android:layout_width="409dp"
+        android:layout_width="410dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="619dp"
-        android:text="Artisan"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="620dp"
+        android:text="@string/Artisan"
         android:textAlignment="center"
+        android:textColor="#515151"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,TextSizeCheck" />
 
     <ImageButton
         android:id="@+id/startButton"
+        style="@android:style/Widget.ImageButton"
         android:layout_width="395dp"
         android:layout_height="511dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="136dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="84dp"
+        android:background="#656565"
+        android:backgroundTint="#656565"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/time_to_create" />
+        app:srcCompat="@drawable/time_to_create"
+        tools:ignore="ContentDescription,ImageContrastCheck,SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
