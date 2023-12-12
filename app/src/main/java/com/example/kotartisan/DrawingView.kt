@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
@@ -46,7 +47,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
             paint.strokeWidth = shape.size
             canvas.drawPath(shape.path, paint)
         }
-        canvas.drawPath(currentShape, paint)
+       canvas.drawPath(currentShape, paint)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -57,7 +58,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         when (event.action) {
             MotionEvent.ACTION_DOWN -> currentShape.moveTo(x, y)
             MotionEvent.ACTION_MOVE -> currentShape.lineTo(x, y)
-            MotionEvent.ACTION_UP -> { /* Nothing for now */ }
+            MotionEvent.ACTION_UP -> { }
             else -> return false
         }
 
@@ -86,16 +87,23 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     {
         paths.clear()
         shapes.clear()
-
+        currentShape.reset()
         invalidate()
     }
 
     fun shrinkShape() {
         paint.strokeWidth = paint.strokeWidth - 5f
+        val scaling = 0.5f
+        for (shape in shapes)
+        {shape.path.transform(Matrix().apply { postScale(scaling, scaling )})}
+
         invalidate()
     }
     fun growShape() {
         paint.strokeWidth = paint.strokeWidth + 5f
+        val scaling = 2f
+        for (shape in shapes)
+        {shape.path.transform(Matrix().apply { postScale(scaling, scaling )})}
         invalidate()
     }
     fun undo() {
@@ -105,7 +113,6 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
             invalidate()
         }
     }
-
 }
 
 data class ShapeData(
