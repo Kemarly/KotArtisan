@@ -81,7 +81,7 @@ class Drawing : AppCompatActivity() {
         yellowButton.setOnClickListener {drawingView.changeColor(Color.YELLOW)}
         greenButton.setOnClickListener {drawingView.changeColor(Color.GREEN)}
         blueButton.setOnClickListener {drawingView.changeColor(Color.BLUE)
-        purpleButton.setOnClickListener {drawingView.changeColor(Color.rgb(204,85,255))}
+        purpleButton.setOnClickListener {drawingView.changeColor(Color.rgb(200,0,255))}
         blackButton.setOnClickListener {drawingView.changeColor(Color.BLACK)}
         brownButton.setOnClickListener {drawingView.changeColor(Color.rgb(130,100,30))}
     }
