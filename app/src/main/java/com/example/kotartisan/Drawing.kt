@@ -7,6 +7,7 @@ import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Size
+import android.widget.Button
 import android.widget.ImageButton
 
 class Drawing : AppCompatActivity() {
@@ -16,10 +17,20 @@ class Drawing : AppCompatActivity() {
     private lateinit var shrinkButton: ImageButton
     private lateinit var growButton: ImageButton
     private lateinit var undoButton: ImageButton
+    private lateinit var redoButton: ImageButton
     private lateinit var starButton: ImageButton
     private lateinit var circleButton: ImageButton
     private lateinit var squareButton: ImageButton
     private lateinit var triangleButton: ImageButton
+    private lateinit var redButton: Button
+    private lateinit var orangeButton: Button
+    private lateinit var yellowButton: Button
+    private lateinit var greenButton: Button
+    private lateinit var blueButton: Button
+    private lateinit var purpleButton: Button
+    private lateinit var blackButton: Button
+    private lateinit var brownButton: Button
+
     private var centerX = 0f
     private var centerY = 0f
 
@@ -27,43 +38,57 @@ class Drawing : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing)
 
-        drawingView = findViewById(R.id.drawingView) // Move this line here
+        drawingView = findViewById(R.id.drawingView)
         centerY = drawingView.height / 2f
         centerX = drawingView.width / 2f
 
-        drawingView = findViewById(R.id.drawingView)
         deleteButton = findViewById(R.id.deleteButton)
         saveButton = findViewById(R.id.saveButton)
         shrinkButton = findViewById(R.id.shrinkButton)
         growButton = findViewById(R.id.growButton)
         undoButton = findViewById(R.id.undoButton)
+        redoButton = findViewById(R.id.redoButton)
+
         starButton = findViewById(R.id.starButton)
         circleButton = findViewById(R.id.circleButton)
         squareButton = findViewById(R.id.squareButton)
         triangleButton = findViewById(R.id.triangleButton)
 
-        deleteButton.setOnClickListener { drawingView.clearDrawing() }
-        saveButton.setOnClickListener{
-            val bitmap = Bitmap.createBitmap(
-                drawingView.width,
-                drawingView.height,
-                Bitmap.Config.ARGB_8888
-            )
-            val canvas = Canvas(bitmap)
-            drawingView.draw(canvas)
-        }
+        redButton = findViewById(R.id.redButton)
+        orangeButton = findViewById(R.id.orangeButton)
+        yellowButton = findViewById(R.id.yellowButton)
+        greenButton = findViewById(R.id.greenButton)
+        blueButton = findViewById(R.id.blueButton)
+        purpleButton = findViewById(R.id.purpleButton)
+        blackButton = findViewById(R.id.blackButton)
+        brownButton = findViewById(R.id.brownButton)
+
+
+        deleteButton.setOnClickListener { drawingView.clearDrawing()}
+        saveButton.setOnClickListener{drawingView.saveDrawing() }
         shrinkButton.setOnClickListener { drawingView.shrinkShape() }
         growButton.setOnClickListener { drawingView.growShape() }
         undoButton.setOnClickListener { drawingView.undo() }
+        redoButton.setOnClickListener { drawingView.redo() }
+
         starButton.setOnClickListener {drawStar()}
         triangleButton.setOnClickListener {drawTriangle()}
         squareButton.setOnClickListener {drawSquare()}
         circleButton.setOnClickListener {drawCircle()}
+
+        redButton.setOnClickListener {drawingView.changeColor(Color.RED)}
+        orangeButton.setOnClickListener {drawingView.changeColor(Color.rgb(250,130,20))}
+        yellowButton.setOnClickListener {drawingView.changeColor(Color.YELLOW)}
+        greenButton.setOnClickListener {drawingView.changeColor(Color.GREEN)}
+        blueButton.setOnClickListener {drawingView.changeColor(Color.BLUE)
+        purpleButton.setOnClickListener {drawingView.changeColor(Color.rgb(200,0,255))}
+        blackButton.setOnClickListener {drawingView.changeColor(Color.BLACK)}
+        brownButton.setOnClickListener {drawingView.changeColor(Color.rgb(130,100,30))}
     }
 }
 private fun drawStar()
 {
-    val starColor = Color.BLUE
+    val starColor = Color.BLACK
     val starSize = Size(10, 10)
     val starPath = createStarPath()
     DrawingView.addShape(starColor, starSize, starPath)
@@ -88,14 +113,12 @@ private fun createStarPath(): Path
             path.lineTo(x, y)
         }
     }
-
     path.close()
-
     return path
 }
 private fun drawTriangle()
 {
-    val triangleColor = Color.BLUE
+    val triangleColor = Color.BLACK
     val triangleSize = Size(10, 10)
     val trianglePath = createTrianglePath()
 
@@ -123,7 +146,7 @@ private fun createTrianglePath(): Path {
 
 private fun drawSquare()
 {
-    val squareColor = Color.BLUE
+    val squareColor = Color.BLACK
     val squareSize = Size(10, 10)
 
     val squarePath = createSquarePath()
@@ -157,7 +180,7 @@ private fun createSquarePath(): Path
 
 private fun drawCircle()
 {
-    val circleColor = Color.BLUE
+    val circleColor = Color.BLACK
     val circleSize = Size(10, 10)
     val circlePath = createCirclePath()
     DrawingView.addShape(circleColor, circleSize, circlePath)
@@ -169,4 +192,5 @@ private fun createCirclePath(): Path {
     val path = Path()
     path.addCircle(centerX, centerY, 5f, Path.Direction.CW)
     return path
+}
 }
