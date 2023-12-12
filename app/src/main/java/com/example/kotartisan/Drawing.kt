@@ -63,15 +63,7 @@ class Drawing : AppCompatActivity() {
 
 
         deleteButton.setOnClickListener { drawingView.clearDrawing()}
-        saveButton.setOnClickListener{
-            val bitmap = Bitmap.createBitmap(
-                drawingView.width,
-                drawingView.height,
-                Bitmap.Config.ARGB_8888
-            )
-            val canvas = Canvas(bitmap)
-            drawingView.draw(canvas)
-        }
+        saveButton.setOnClickListener{drawingView.saveDrawing() }
         shrinkButton.setOnClickListener { drawingView.shrinkShape() }
         growButton.setOnClickListener { drawingView.growShape() }
         undoButton.setOnClickListener { drawingView.undo() }

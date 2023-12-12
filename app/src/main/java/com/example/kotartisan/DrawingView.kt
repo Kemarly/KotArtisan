@@ -11,6 +11,10 @@ import android.util.AttributeSet
 import android.util.Size
 import android.view.MotionEvent
 import android.view.View
+import android.graphics.Bitmap
+import java.io.FileOutputStream
+import java.io.IOException
+import android.widget.Toast
 
 class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
 {
@@ -90,7 +94,25 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         currentShape.reset()
         invalidate()
     }
-
+    @SuppressLint("SdCardPath")
+    fun saveDrawing(): Bitmap?
+    {
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        val filePath = "/sdcard/drawing.png"
+        draw(canvas)
+        try {
+            val fileOutputStream = FileOutputStream(filePath)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
+            fileOutputStream.close()
+            Toast.makeText(context, "Drawing saved successfully", Toast.LENGTH_SHORT).show()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Toast.makeText(context, "Failed to save drawing", Toast.LENGTH_SHORT).show()
+            return null
+        }
+        return bitmap
+    }
     fun shrinkShape() {
         paint.strokeWidth = paint.strokeWidth - 5f
         val scaling = 0.5f
