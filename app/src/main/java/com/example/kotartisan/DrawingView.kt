@@ -23,6 +23,8 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     private val shapes = ArrayList<ShapeData>()
     private val paint = Paint()
     private var newColor: Int = Color.BLACK
+    private val undoPaths = ArrayList<Path>()
+    private val undoShapes = ArrayList<ShapeData>()
     init {
         paint.isAntiAlias = true
         paint.color = Color.BLACK
@@ -60,12 +62,20 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         val y = event.y
 
         when (event.action) {
-            MotionEvent.ACTION_DOWN -> currentShape.moveTo(x, y)
+            MotionEvent.ACTION_DOWN ->
+            {
+                currentShape.reset()
+                currentShape.moveTo(x, y)
+            }
             MotionEvent.ACTION_MOVE -> currentShape.lineTo(x, y)
-            MotionEvent.ACTION_UP -> { }
+            MotionEvent.ACTION_UP ->
+            {
+                paths.add(Path(currentShape))
+                shapes.add(ShapeData(Path(currentShape), newColor, paint.strokeWidth))
+                currentShape.reset()
+            }
             else -> return false
         }
-
         invalidate()
         return true
     }
@@ -129,8 +139,17 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     }
     fun undo() {
         if (paths.isNotEmpty()) {
-            paths.removeAt(paths.size - 1)
-            shapes.removeAt(shapes.size -1)
+            //paths.removeAt(paths.size - 1)
+            //shapes.removeAt(shapes.size -1)
+            undoPaths.add(paths.removeAt(paths.size - 1))
+            undoShapes.add(shapes.removeAt(shapes.size - 1))
+            invalidate()
+        }
+    }
+    fun redo() {
+        if (undoPaths.isNotEmpty()) {
+            paths.add(undoPaths.removeAt(undoPaths.size - 1))
+            shapes.add(undoShapes.removeAt(undoShapes.size - 1))
             invalidate()
         }
     }
