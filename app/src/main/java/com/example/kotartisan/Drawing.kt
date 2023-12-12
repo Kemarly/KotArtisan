@@ -1,7 +1,5 @@
 package com.example.kotartisan
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity

@@ -8,10 +8,10 @@ import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
-import android.util.Size
 import android.view.MotionEvent
 import android.view.View
 import android.graphics.Bitmap
+import android.os.Environment
 import java.io.FileOutputStream
 import java.io.IOException
 import android.widget.Toast
@@ -40,7 +40,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         newColor = color
         paint.color = newColor
     }
-    fun addShape(color: Int, size: Float, path: Path) {
+    /*fun addShape(color: Int, size: Float, path: Path) {
         shapes.add(ShapeData(Path(currentShape), color, size))
         currentShape.reset()
         invalidate()
@@ -50,7 +50,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         shapes.clear()
         shapes.addAll(shapesList)
         invalidate()
-    }
+    }*/
     override fun onDraw(canvas: Canvas) {
         for (shape in shapes) {
             paint.color = shape.color
@@ -84,12 +84,12 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         return true
     }
 
-    companion object {
+    /*companion object {
         fun addShape(Color: Int, Size: Size, Path: Path) {
 
         }
     }
-   /* fun setCurrentShape(shape: Path) {
+   fun setCurrentShape(shape: Path) {
         currentShape = shape
     }
 
@@ -112,7 +112,8 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     {
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
-        val filePath = "/sdcard/Artisan.png"
+        val externalPath = Environment.getExternalStorageDirectory().path
+        val filePath = "$externalPath/Artisan.png"
         draw(canvas)
         try {
             val fileOutputStream = FileOutputStream(filePath)
@@ -124,6 +125,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
             Toast.makeText(context, "Failed to save drawing", Toast.LENGTH_SHORT).show()
             return null
         }
+
         return bitmap
     }
     fun shrinkShape() {
