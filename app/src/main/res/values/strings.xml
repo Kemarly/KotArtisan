@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">KotArtisan</string>
     <string name="Artisan">Artisan</string>
+    <string name="TimeToCreate">Time to Create</string>
 </resources>
