@@ -88,7 +88,7 @@ class Drawing : AppCompatActivity() {
 }
 private fun drawStar()
 {
-    val starColor = Color.BLUE
+    val starColor = Color.BLACK
     val starSize = Size(10, 10)
     val starPath = createStarPath()
     DrawingView.addShape(starColor, starSize, starPath)
@@ -120,7 +120,7 @@ private fun createStarPath(): Path
 }
 private fun drawTriangle()
 {
-    val triangleColor = Color.BLUE
+    val triangleColor = Color.BLACK
     val triangleSize = Size(10, 10)
     val trianglePath = createTrianglePath()
 
@@ -148,7 +148,7 @@ private fun createTrianglePath(): Path {
 
 private fun drawSquare()
 {
-    val squareColor = Color.BLUE
+    val squareColor = Color.BLACK
     val squareSize = Size(10, 10)
 
     val squarePath = createSquarePath()
@@ -182,7 +182,7 @@ private fun createSquarePath(): Path
 
 private fun drawCircle()
 {
-    val circleColor = Color.BLUE
+    val circleColor = Color.BLACK
     val circleSize = Size(10, 10)
     val circlePath = createCirclePath()
     DrawingView.addShape(circleColor, circleSize, circlePath)

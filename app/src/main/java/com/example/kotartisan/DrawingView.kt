@@ -25,18 +25,22 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     private var newColor: Int = Color.BLACK
     private val undoPaths = ArrayList<Path>()
     private val undoShapes = ArrayList<ShapeData>()
+    private var centerX = 0f
+    private var centerY = 0f
     init {
         paint.isAntiAlias = true
         paint.color = Color.BLACK
         paint.style = Paint.Style.STROKE
         paint.strokeJoin = Paint.Join.ROUND
         paint.strokeWidth = 5f
+        centerY = height / 2f
+        centerX = width / 2f
     }
     fun changeColor(color: Int) {
         newColor = color
         paint.color = newColor
     }
-   /* fun addShape(color: Int, size: Float, path: Path) {
+    fun addShape(color: Int, size: Float, path: Path) {
         shapes.add(ShapeData(Path(currentShape), color, size))
         currentShape.reset()
         invalidate()
@@ -46,7 +50,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         shapes.clear()
         shapes.addAll(shapesList)
         invalidate()
-    }*/
+    }
     override fun onDraw(canvas: Canvas) {
         for (shape in shapes) {
             paint.color = shape.color
@@ -124,17 +128,17 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     }
     fun shrinkShape() {
         paint.strokeWidth = paint.strokeWidth - 5f
-        val scaling = 0.5f
+        val scaling = 0.8f
         for (shape in shapes)
-        {shape.path.transform(Matrix().apply { postScale(scaling, scaling )})}
+        {shape.path.transform(Matrix().apply { postScale(scaling, scaling, centerX, centerY )})}
 
         invalidate()
     }
     fun growShape() {
         paint.strokeWidth = paint.strokeWidth + 5f
-        val scaling = 2f
+        val scaling = 1.2f
         for (shape in shapes)
-        {shape.path.transform(Matrix().apply { postScale(scaling, scaling )})}
+        {shape.path.transform(Matrix().apply { postScale(scaling, scaling, centerX, centerY )})}
         invalidate()
     }
     fun undo() {
@@ -155,7 +159,8 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     }
 }
 
-data class ShapeData(
+data class ShapeData
+    (
     val path: Path,
     val color: Int,
     val size: Float = 10.0f
