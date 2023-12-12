@@ -94,12 +94,11 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         currentShape.reset()
         invalidate()
     }
-    @SuppressLint("SdCardPath")
     fun saveDrawing(): Bitmap?
     {
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
-        val filePath = "/sdcard/drawing.png"
+        val filePath = "/sdcard/Artisan.png"
         draw(canvas)
         try {
             val fileOutputStream = FileOutputStream(filePath)
