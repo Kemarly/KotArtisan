@@ -113,9 +113,7 @@ private fun createStarPath(): Path
             path.lineTo(x, y)
         }
     }
-
     path.close()
-
     return path
 }
 private fun drawTriangle()
