@@ -17,6 +17,7 @@ class Drawing : AppCompatActivity() {
     private lateinit var shrinkButton: ImageButton
     private lateinit var growButton: ImageButton
     private lateinit var undoButton: ImageButton
+    private lateinit var redoButton: ImageButton
     private lateinit var starButton: ImageButton
     private lateinit var circleButton: ImageButton
     private lateinit var squareButton: ImageButton
@@ -46,6 +47,7 @@ class Drawing : AppCompatActivity() {
         shrinkButton = findViewById(R.id.shrinkButton)
         growButton = findViewById(R.id.growButton)
         undoButton = findViewById(R.id.undoButton)
+        redoButton = findViewById(R.id.redoButton)
 
         starButton = findViewById(R.id.starButton)
         circleButton = findViewById(R.id.circleButton)
@@ -67,6 +69,7 @@ class Drawing : AppCompatActivity() {
         shrinkButton.setOnClickListener { drawingView.shrinkShape() }
         growButton.setOnClickListener { drawingView.growShape() }
         undoButton.setOnClickListener { drawingView.undo() }
+        redoButton.setOnClickListener { drawingView.redo() }
 
         starButton.setOnClickListener {drawStar()}
         triangleButton.setOnClickListener {drawTriangle()}
@@ -80,9 +83,7 @@ class Drawing : AppCompatActivity() {
         blueButton.setOnClickListener {drawingView.changeColor(Color.BLUE)
         purpleButton.setOnClickListener {drawingView.changeColor(Color.rgb(204,85,255))}
         blackButton.setOnClickListener {drawingView.changeColor(Color.BLACK)}
-        brownButton.setOnClickListener {drawingView.changeColor(Color.rgb(90,60,30))}
-
-
+        brownButton.setOnClickListener {drawingView.changeColor(Color.rgb(130,100,30))}
     }
 }
 private fun drawStar()
