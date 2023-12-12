@@ -125,7 +125,6 @@ private fun drawSquare()
 {
     val squareColor = Color.BLUE
     val squareSize = Size(10, 10)
-
     val squarePath = createSquarePath()
 
     DrawingView.addShape(squareColor, squareSize, squarePath)
