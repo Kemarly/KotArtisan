@@ -1,15 +1,13 @@
 package com.example.kotartisan
 
 import android.graphics.Color
-//import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
-//import android.util.Size
 import android.widget.Button
 import android.widget.ImageButton
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.widget.TooltipCompat
 
 class Drawing : AppCompatActivity() {
     private lateinit var drawingView: DrawingView
@@ -34,7 +32,12 @@ class Drawing : AppCompatActivity() {
 
     private var centerX = 0f
     private var centerY = 0f
-
+    private fun showTooltip(message: String) {
+        TooltipCompat.setTooltipText(deleteButton, message)
+    }
+    private fun hideTooltip() {
+        TooltipCompat.setTooltipText(deleteButton, null)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing)
@@ -227,10 +230,4 @@ private fun handleHoverEvent(event: MotionEvent?, message: String) {
         MotionEvent.ACTION_HOVER_EXIT -> hideTooltip()
     }
 }
-
-    private fun showTooltip(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun hideTooltip() {}
 }
