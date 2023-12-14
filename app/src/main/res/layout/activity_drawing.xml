@@ -15,8 +15,10 @@
         android:contentDescription="Draw"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="HardcodedText,VisualLintBounds" />
 
     <ImageButton
@@ -27,8 +29,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="330dp"
         android:layout_marginBottom="660dp"
-        android:contentDescription="TODO"
         android:background="@drawable/saveimage"
+        android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,9 +101,9 @@
         android:id="@+id/redoButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="340dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="321dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="660dp"
         android:background="@drawable/redoimage"
         app:layout_constraintBottom_toBottomOf="parent"
