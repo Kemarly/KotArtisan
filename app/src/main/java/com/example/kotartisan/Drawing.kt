@@ -119,7 +119,6 @@ class Drawing : AppCompatActivity() {
     }
     }
 
-
 private fun drawStar()
 {
     /*val starColor = Color.BLACK
