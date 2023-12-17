@@ -2,6 +2,7 @@ package com.example.kotartisan
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+//import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
@@ -54,10 +55,10 @@ class Drawing : AppCompatActivity() {
         undoButton = findViewById(R.id.undoButton)
         redoButton = findViewById(R.id.redoButton)
 
-        starButton = findViewById(R.id.starButton)
+       /* starButton = findViewById(R.id.starButton)
         circleButton = findViewById(R.id.circleButton)
         squareButton = findViewById(R.id.squareButton)
-        triangleButton = findViewById(R.id.triangleButton)
+        triangleButton = findViewById(R.id.triangleButton)*/
 
         redButton = findViewById(R.id.redButton)
         orangeButton = findViewById(R.id.orangeButton)
@@ -100,10 +101,10 @@ class Drawing : AppCompatActivity() {
         undoButton.setOnClickListener { drawingView.undo() }
         redoButton.setOnClickListener { drawingView.redo() }
 
-        starButton.setOnClickListener { drawStar() }
+        /*starButton.setOnClickListener { drawStar() }
         triangleButton.setOnClickListener { drawTriangle() }
         squareButton.setOnClickListener { drawSquare() }
-        circleButton.setOnClickListener { drawCircle() }
+        circleButton.setOnClickListener { drawCircle() }*/
 
         redButton.setOnClickListener { drawingView.changeColor(Color.RED) }
         orangeButton.setOnClickListener { drawingView.changeColor(Color.rgb(250, 130, 20)) }
@@ -160,17 +161,38 @@ class Drawing : AppCompatActivity() {
         }
     }
 
-private fun drawStar()
+    /*private fun drawStar() {
+        val starColor = drawingView.newColor
+        val starSize = drawingView.paths.size
+        val starPath = createStarPath()
+        drawingView.addShape(starColor, starSize.toFloat(), starPath)
+    }
+
+    private fun drawTriangle() {
+        val triangleColor = drawingView.newColor
+        val triangleSize = drawingView.paths.size
+        val trianglePath = createTrianglePath()
+        drawingView.addShape(triangleColor, triangleSize.toFloat(), trianglePath)
+    }
+
+    private fun drawSquare() {
+        val squareColor = drawingView.newColor
+        val squareSize = drawingView.paths.size
+        val squarePath = createSquarePath()
+        drawingView.addShape(squareColor, squareSize.toFloat(), squarePath)
+    }
+
+    private fun drawCircle() {
+        val circleColor = drawingView.newColor
+        val circleSize = drawingView.paths.size
+        val circlePath = createCirclePath()
+        drawingView.addShape(circleColor, circleSize.toFloat(), circlePath)
+    }
+
+private fun createStarPath(): Path
 {
-    /*val starColor = Color.BLACK
-    val starSize = Size(10, 10)
-    val starPath = createStarPath()
-    DrawingView.addShape(starColor, starSize, starPath)*/
-}
-/*private fun createStarPath(): Path
-{
-    val centerX = 0f
-    val centerY = 0f
+    val centerX = drawingView.centerX
+    val centerY = drawingView.centerY
     val path = Path()
     val size = 100f
     val starRadius = size / 3f
@@ -189,18 +211,12 @@ private fun drawStar()
     }
     path.close()
     return path
-}*/
-private fun drawTriangle()
-{
-    /*val triangleColor = Color.BLACK
-    val triangleSize = Size(10, 10)
-    val trianglePath = createTrianglePath()
-    DrawingView.addShape(triangleColor, triangleSize, trianglePath)*/
 }
-
-/*private fun createTrianglePath(): Path {
-    val centerX = 0f
-    val centerY = 0f
+private fun createTrianglePath(): Path {
+    /*val centerX = 0f
+    val centerY = 0f*/
+    val centerX = drawingView.centerX
+    val centerY = drawingView.centerY
     val path = Path()
     val size = 100f
     val y1 = centerY - size / 2
@@ -215,22 +231,13 @@ private fun drawTriangle()
     path.close()
 
     return path
-}*/
-
-private fun drawSquare()
-{
-    /*val squareColor = Color.BLACK
-    val squareSize = Size(10, 10)
-    val squarePath = createSquarePath()
-    DrawingView.addShape(squareColor, squareSize, squarePath)*/
 }
-
-/*private fun createSquarePath(): Path
+private fun createSquarePath(): Path
 {
     val path = Path()
     val size = 100f
-    val centerX = 0f
-    val centerY = 0f
+    val centerX = drawingView.centerX
+    val centerY = drawingView.centerY
     val x1 = centerX - size / 2
     val y1 = centerY - size / 2
     val x2 = centerX - size / 2
@@ -247,19 +254,10 @@ private fun drawSquare()
     path.close()
 
     return path
-}*/
-
-private fun drawCircle()
-{
-    /*val circleColor = Color.BLACK
-    val circleSize = Size(10, 10)
-    val circlePath = createCirclePath()
-    DrawingView.addShape(circleColor, circleSize, circlePath)*/
 }
-
-/*private fun createCirclePath(): Path {
-    val centerX = 0f
-    val centerY = 0f
+private fun createCirclePath(): Path {
+    val centerX = drawingView.centerX
+    val centerY = drawingView.centerY
     val path = Path()
     path.addCircle(centerX, centerY, 5f, Path.Direction.CW)
     return path

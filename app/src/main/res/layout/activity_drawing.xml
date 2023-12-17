@@ -117,6 +117,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
+    <!--
     <ImageButton
         android:id="@+id/starButton"
         android:layout_width="60dp"
@@ -180,7 +181,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/checkbox_off_background"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
+-->
     <Button
         android:id="@+id/redButton"
         android:layout_width="50dp"
