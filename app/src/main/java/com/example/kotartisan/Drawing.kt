@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Size
 import android.view.MotionEvent
 import android.widget.Button
 import android.widget.ImageButton
