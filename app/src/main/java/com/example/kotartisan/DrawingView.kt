@@ -15,6 +15,7 @@ import android.os.Environment
 import java.io.FileOutputStream
 import java.io.IOException
 import android.widget.Toast
+import android.graphics.*
 
 class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
 {
@@ -108,13 +109,12 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         currentShape.reset()
         invalidate()
     }
-    fun saveDrawing(): Bitmap?
-    {
+    fun saveDrawing(): Bitmap? {
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
-        val externalPath = Environment.getExternalStorageDirectory().path
-        val filePath = "$externalPath/Artisan.png"
         draw(canvas)
+        val externalPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val filePath = "$externalPath/Artisan.png"
         try {
             val fileOutputStream = FileOutputStream(filePath)
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
@@ -125,7 +125,6 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
             Toast.makeText(context, "Failed to save drawing", Toast.LENGTH_SHORT).show()
             return null
         }
-
         return bitmap
     }
     fun shrinkShape() {
