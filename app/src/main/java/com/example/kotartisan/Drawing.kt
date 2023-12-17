@@ -2,8 +2,10 @@ package com.example.kotartisan
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Size
 import android.view.MotionEvent
 import android.widget.Button
 import android.widget.ImageButton
@@ -160,17 +162,39 @@ class Drawing : AppCompatActivity() {
         }
     }
 
-private fun drawStar()
+    private fun drawStar() {
+        val starColor = drawingView.currentColor
+        val starSize = drawingView.currentSize
+        val starPath = createStarPath()
+        drawingView.addShape(starColor, starSize, starPath)
+    }
+
+    private fun drawTriangle() {
+        val triangleColor = drawingView.currentColor
+        val triangleSize = drawingView.currentSize
+        val trianglePath = createTrianglePath()
+        drawingView.addShape(triangleColor, triangleSize, trianglePath)
+    }
+
+    private fun drawSquare() {
+        val squareColor = drawingView.currentColor
+        val squareSize = drawingView.currentSize
+        val squarePath = createSquarePath()
+        drawingView.addShape(squareColor, squareSize, squarePath)
+    }
+
+    private fun drawCircle() {
+        val circleColor = drawingView.currentColor
+        val circleSize = drawingView.currentSize
+        val circlePath = createCirclePath()
+        drawingView.addShape(circleColor, circleSize, circlePath)
+    }
+
+
+private fun createStarPath(): Path
 {
-    /*val starColor = Color.BLACK
-    val starSize = Size(10, 10)
-    val starPath = createStarPath()
-    DrawingView.addShape(starColor, starSize, starPath)*/
-}
-/*private fun createStarPath(): Path
-{
-    val centerX = 0f
-    val centerY = 0f
+    val centerX = drawingView.centerX
+    val centerY = drawingView.centerY
     val path = Path()
     val size = 100f
     val starRadius = size / 3f
@@ -189,18 +213,12 @@ private fun drawStar()
     }
     path.close()
     return path
-}*/
-private fun drawTriangle()
-{
-    /*val triangleColor = Color.BLACK
-    val triangleSize = Size(10, 10)
-    val trianglePath = createTrianglePath()
-    DrawingView.addShape(triangleColor, triangleSize, trianglePath)*/
 }
-
-/*private fun createTrianglePath(): Path {
-    val centerX = 0f
-    val centerY = 0f
+private fun createTrianglePath(): Path {
+    /*val centerX = 0f
+    val centerY = 0f*/
+    val centerX = drawingView.centerX
+    val centerY = drawingView.centerY
     val path = Path()
     val size = 100f
     val y1 = centerY - size / 2
@@ -215,22 +233,13 @@ private fun drawTriangle()
     path.close()
 
     return path
-}*/
-
-private fun drawSquare()
-{
-    /*val squareColor = Color.BLACK
-    val squareSize = Size(10, 10)
-    val squarePath = createSquarePath()
-    DrawingView.addShape(squareColor, squareSize, squarePath)*/
 }
-
-/*private fun createSquarePath(): Path
+private fun createSquarePath(): Path
 {
     val path = Path()
     val size = 100f
-    val centerX = 0f
-    val centerY = 0f
+    val centerX = drawingView.centerX
+    val centerY = drawingView.centerY
     val x1 = centerX - size / 2
     val y1 = centerY - size / 2
     val x2 = centerX - size / 2
@@ -247,23 +256,14 @@ private fun drawSquare()
     path.close()
 
     return path
-}*/
-
-private fun drawCircle()
-{
-    /*val circleColor = Color.BLACK
-    val circleSize = Size(10, 10)
-    val circlePath = createCirclePath()
-    DrawingView.addShape(circleColor, circleSize, circlePath)*/
 }
-
-/*private fun createCirclePath(): Path {
-    val centerX = 0f
-    val centerY = 0f
+private fun createCirclePath(): Path {
+    val centerX = drawingView.centerX
+    val centerY = drawingView.centerY
     val path = Path()
     path.addCircle(centerX, centerY, 5f, Path.Direction.CW)
     return path
-}*/
+}
 private fun handleHoverEvent(event: MotionEvent?, message: String) {
     when (event?.action) {
         MotionEvent.ACTION_HOVER_ENTER -> showTooltip(message)

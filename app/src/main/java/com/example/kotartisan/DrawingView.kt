@@ -16,6 +16,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import android.widget.Toast
 import android.graphics.*
+import android.util.Size
 
 class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
 {
@@ -26,8 +27,8 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     private var newColor: Int = Color.BLACK
     private val undoPaths = ArrayList<Path>()
     private val undoShapes = ArrayList<ShapeData>()
-    private var centerX = 0f
-    private var centerY = 0f
+    var centerX = 0f
+    var centerY = 0f
     init {
         paint.isAntiAlias = true
         paint.color = Color.BLACK
@@ -41,7 +42,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         newColor = color
         paint.color = newColor
     }
-    /*fun addShape(color: Int, size: Float, path: Path) {
+    fun addShape(color: Int, size: Float, path: Path) {
         shapes.add(ShapeData(Path(currentShape), color, size))
         currentShape.reset()
         invalidate()
@@ -51,7 +52,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         shapes.clear()
         shapes.addAll(shapesList)
         invalidate()
-    }*/
+    }
     override fun onDraw(canvas: Canvas) {
         for (shape in shapes) {
             paint.color = shape.color
@@ -85,7 +86,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         return true
     }
 
-    /*companion object {
+    companion object {
         fun addShape(Color: Int, Size: Size, Path: Path) {
 
         }
@@ -101,7 +102,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
     fun setCurrentSize(size: Float) {
         paint.strokeWidth = size
     }
-*/
+
     fun clearDrawing()
     {
         paths.clear()
