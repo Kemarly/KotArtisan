@@ -1,5 +1,6 @@
 package com.example.kotartisan
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -117,6 +118,46 @@ class Drawing : AppCompatActivity() {
             handleHoverEvent(event, "Message")
             true
     }
+        setButtonTooltips()
+
+        setTooltip(saveButton, "Save")
+        setTooltip(deleteButton, "Delete")
+        setTooltip(shrinkButton, "Shrink")
+        setTooltip(growButton, "Grow")
+        setTooltip(undoButton, "Undo")
+        setTooltip(redoButton, "Redo")
+    }
+    private fun setButtonTooltips() {
+        setTooltip(saveButton, "Save")
+        setTooltip(deleteButton, "Delete")
+        setTooltip(shrinkButton, "Shrink")
+        setTooltip(growButton, "Grow")
+        setTooltip(undoButton, "Undo")
+        setTooltip(redoButton, "Redo")
+
+        setTooltip(starButton, "Star")
+        setTooltip(circleButton, "Circle")
+        setTooltip(triangleButton, "Triangle")
+        setTooltip(squareButton, "Square")
+
+        setTooltip(redButton, "Red")
+        setTooltip(orangeButton, "Orange")
+        setTooltip(yellowButton, "Yellow")
+        setTooltip(greenButton, "Green")
+        setTooltip(blueButton, "Blue")
+        setTooltip(purpleButton, "Purple")
+        setTooltip(blackButton, "Black")
+        setTooltip(brownButton, "Brown")
+    }
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setTooltip(view: View, tooltipText: String) {
+        view.setOnHoverListener { _, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_HOVER_ENTER -> TooltipCompat.setTooltipText(view, tooltipText)
+                MotionEvent.ACTION_HOVER_EXIT -> TooltipCompat.setTooltipText(view, null)
+            }
+            true
+        }
     }
 
 private fun drawStar()
