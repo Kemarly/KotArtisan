@@ -1,12 +1,14 @@
 package com.example.kotartisan
 
+import android.annotation.SuppressLint
 import android.graphics.Color
-import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Size
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.ImageButton
+import android.view.View
+import androidx.appcompat.widget.TooltipCompat
 
 class Drawing : AppCompatActivity() {
     private lateinit var drawingView: DrawingView
@@ -31,7 +33,12 @@ class Drawing : AppCompatActivity() {
 
     private var centerX = 0f
     private var centerY = 0f
-
+    private fun showTooltip(message: String) {
+        TooltipCompat.setTooltipText(deleteButton, message)
+    }
+    private fun hideTooltip() {
+        TooltipCompat.setTooltipText(deleteButton, null)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing)
@@ -61,37 +68,106 @@ class Drawing : AppCompatActivity() {
         blackButton = findViewById(R.id.blackButton)
         brownButton = findViewById(R.id.brownButton)
 
+        deleteButton.setOnHoverListener { _, event ->
+            handleHoverEvent(event, "Delete")
+            true
+        }
+        saveButton.setOnHoverListener { _, event ->
+            handleHoverEvent(event, "Save")
+            true
+        }
+        shrinkButton.setOnHoverListener { _, event ->
+            handleHoverEvent(event, "Shrink")
+            true
+        }
+        growButton.setOnHoverListener { _, event ->
+            handleHoverEvent(event, "Grow")
+            true
+        }
+        undoButton.setOnHoverListener { _, event ->
+            handleHoverEvent(event, "Undo")
+            true
+        }
+        redoButton.setOnHoverListener { _, event ->
+            handleHoverEvent(event, "Redo")
+            true
+        }
 
-        deleteButton.setOnClickListener { drawingView.clearDrawing()}
-        saveButton.setOnClickListener{drawingView.saveDrawing() }
+        deleteButton.setOnClickListener { drawingView.clearDrawing() }
+        saveButton.setOnClickListener { drawingView.saveDrawing() }
         shrinkButton.setOnClickListener { drawingView.shrinkShape() }
         growButton.setOnClickListener { drawingView.growShape() }
         undoButton.setOnClickListener { drawingView.undo() }
         redoButton.setOnClickListener { drawingView.redo() }
 
-        starButton.setOnClickListener {drawStar()}
-        triangleButton.setOnClickListener {drawTriangle()}
-        squareButton.setOnClickListener {drawSquare()}
-        circleButton.setOnClickListener {drawCircle()}
+        starButton.setOnClickListener { drawStar() }
+        triangleButton.setOnClickListener { drawTriangle() }
+        squareButton.setOnClickListener { drawSquare() }
+        circleButton.setOnClickListener { drawCircle() }
 
-        redButton.setOnClickListener {drawingView.changeColor(Color.RED)}
-        orangeButton.setOnClickListener {drawingView.changeColor(Color.rgb(250,130,20))}
-        yellowButton.setOnClickListener {drawingView.changeColor(Color.YELLOW)}
-        greenButton.setOnClickListener {drawingView.changeColor(Color.GREEN)}
-        blueButton.setOnClickListener {drawingView.changeColor(Color.BLUE)
-        purpleButton.setOnClickListener {drawingView.changeColor(Color.rgb(200,0,255))}
-        blackButton.setOnClickListener {drawingView.changeColor(Color.BLACK)}
-        brownButton.setOnClickListener {drawingView.changeColor(Color.rgb(130,100,30))}
+        redButton.setOnClickListener { drawingView.changeColor(Color.RED) }
+        orangeButton.setOnClickListener { drawingView.changeColor(Color.rgb(250, 130, 20)) }
+        yellowButton.setOnClickListener { drawingView.changeColor(Color.YELLOW) }
+        greenButton.setOnClickListener { drawingView.changeColor(Color.GREEN) }
+        blueButton.setOnClickListener {drawingView.changeColor(Color.BLUE)}
+        purpleButton.setOnClickListener { drawingView.changeColor(Color.rgb(200, 0, 255)) }
+        blackButton.setOnClickListener { drawingView.changeColor(Color.BLACK) }
+        brownButton.setOnClickListener { drawingView.changeColor(Color.rgb(130, 100, 30)) }
+
+        findViewById<View>(android.R.id.content).setOnHoverListener { _, event ->
+            handleHoverEvent(event, "Message")
+            true
     }
-}
+        setButtonTooltips()
+
+        setTooltip(saveButton, "Save")
+        setTooltip(deleteButton, "Delete")
+        setTooltip(shrinkButton, "Shrink")
+        setTooltip(growButton, "Grow")
+        setTooltip(undoButton, "Undo")
+        setTooltip(redoButton, "Redo")
+    }
+    private fun setButtonTooltips() {
+        setTooltip(saveButton, "Save")
+        setTooltip(deleteButton, "Delete")
+        setTooltip(shrinkButton, "Shrink")
+        setTooltip(growButton, "Grow")
+        setTooltip(undoButton, "Undo")
+        setTooltip(redoButton, "Redo")
+
+        setTooltip(starButton, "Star")
+        setTooltip(circleButton, "Circle")
+        setTooltip(triangleButton, "Triangle")
+        setTooltip(squareButton, "Square")
+
+        setTooltip(redButton, "Red")
+        setTooltip(orangeButton, "Orange")
+        setTooltip(yellowButton, "Yellow")
+        setTooltip(greenButton, "Green")
+        setTooltip(blueButton, "Blue")
+        setTooltip(purpleButton, "Purple")
+        setTooltip(blackButton, "Black")
+        setTooltip(brownButton, "Brown")
+    }
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setTooltip(view: View, tooltipText: String) {
+        view.setOnHoverListener { _, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_HOVER_ENTER -> TooltipCompat.setTooltipText(view, tooltipText)
+                MotionEvent.ACTION_HOVER_EXIT -> TooltipCompat.setTooltipText(view, null)
+            }
+            true
+        }
+    }
+
 private fun drawStar()
 {
-    val starColor = Color.BLACK
+    /*val starColor = Color.BLACK
     val starSize = Size(10, 10)
     val starPath = createStarPath()
-    DrawingView.addShape(starColor, starSize, starPath)
+    DrawingView.addShape(starColor, starSize, starPath)*/
 }
-private fun createStarPath(): Path
+/*private fun createStarPath(): Path
 {
     val centerX = 0f
     val centerY = 0f
@@ -113,17 +189,16 @@ private fun createStarPath(): Path
     }
     path.close()
     return path
-}
+}*/
 private fun drawTriangle()
 {
-    val triangleColor = Color.BLACK
+    /*val triangleColor = Color.BLACK
     val triangleSize = Size(10, 10)
     val trianglePath = createTrianglePath()
-
-    DrawingView.addShape(triangleColor, triangleSize, trianglePath)
+    DrawingView.addShape(triangleColor, triangleSize, trianglePath)*/
 }
 
-private fun createTrianglePath(): Path {
+/*private fun createTrianglePath(): Path {
     val centerX = 0f
     val centerY = 0f
     val path = Path()
@@ -140,18 +215,17 @@ private fun createTrianglePath(): Path {
     path.close()
 
     return path
-}
+}*/
 
 private fun drawSquare()
 {
-    val squareColor = Color.BLACK
+    /*val squareColor = Color.BLACK
     val squareSize = Size(10, 10)
     val squarePath = createSquarePath()
-
-    DrawingView.addShape(squareColor, squareSize, squarePath)
+    DrawingView.addShape(squareColor, squareSize, squarePath)*/
 }
 
-private fun createSquarePath(): Path
+/*private fun createSquarePath(): Path
 {
     val path = Path()
     val size = 100f
@@ -173,21 +247,27 @@ private fun createSquarePath(): Path
     path.close()
 
     return path
-}
+}*/
 
 private fun drawCircle()
 {
-    val circleColor = Color.BLACK
+    /*val circleColor = Color.BLACK
     val circleSize = Size(10, 10)
     val circlePath = createCirclePath()
-    DrawingView.addShape(circleColor, circleSize, circlePath)
+    DrawingView.addShape(circleColor, circleSize, circlePath)*/
 }
 
-private fun createCirclePath(): Path {
+/*private fun createCirclePath(): Path {
     val centerX = 0f
     val centerY = 0f
     val path = Path()
     path.addCircle(centerX, centerY, 5f, Path.Direction.CW)
     return path
+}*/
+private fun handleHoverEvent(event: MotionEvent?, message: String) {
+    when (event?.action) {
+        MotionEvent.ACTION_HOVER_ENTER -> showTooltip(message)
+        MotionEvent.ACTION_HOVER_EXIT -> hideTooltip()
+    }
 }
 }
