@@ -162,33 +162,32 @@ class Drawing : AppCompatActivity() {
     }
 
     private fun drawStar() {
-        val starColor = drawingView.currentColor
-        val starSize = drawingView.currentSize
+        val starColor = drawingView.newColor
+        val starSize = drawingView.paths.size
         val starPath = createStarPath()
-        drawingView.addShape(starColor, starSize, starPath)
+        drawingView.addShape(starColor, starSize.toFloat(), starPath)
     }
 
     private fun drawTriangle() {
-        val triangleColor = drawingView.currentColor
-        val triangleSize = drawingView.currentSize
+        val triangleColor = drawingView.newColor
+        val triangleSize = drawingView.paths.size
         val trianglePath = createTrianglePath()
-        drawingView.addShape(triangleColor, triangleSize, trianglePath)
+        drawingView.addShape(triangleColor, triangleSize.toFloat(), trianglePath)
     }
 
     private fun drawSquare() {
-        val squareColor = drawingView.currentColor
-        val squareSize = drawingView.currentSize
+        val squareColor = drawingView.newColor
+        val squareSize = drawingView.paths.size
         val squarePath = createSquarePath()
-        drawingView.addShape(squareColor, squareSize, squarePath)
+        drawingView.addShape(squareColor, squareSize.toFloat(), squarePath)
     }
 
     private fun drawCircle() {
-        val circleColor = drawingView.currentColor
-        val circleSize = drawingView.currentSize
+        val circleColor = drawingView.newColor
+        val circleSize = drawingView.paths.size
         val circlePath = createCirclePath()
-        drawingView.addShape(circleColor, circleSize, circlePath)
+        drawingView.addShape(circleColor, circleSize.toFloat(), circlePath)
     }
-
 
 private fun createStarPath(): Path
 {

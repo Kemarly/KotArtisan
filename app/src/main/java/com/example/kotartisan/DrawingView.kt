@@ -20,13 +20,13 @@ import android.util.Size
 
 class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
 {
-    var currentColor: Int = Color.BLACK
-    var currentSize: Float = 5f
+    //var currentColor: Int = Color.BLACK
+    //var currentSize: Float = 5f
     private var currentShape: Path = Path()
-    private val paths = ArrayList<Path>()
+    val paths = ArrayList<Path>()
     private val shapes = ArrayList<ShapeData>()
     private val paint = Paint()
-    private var newColor: Int = Color.BLACK
+    var newColor: Int = Color.BLACK
     private val undoPaths = ArrayList<Path>()
     private val undoShapes = ArrayList<ShapeData>()
     var centerX = 0f
@@ -42,8 +42,8 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs)
         centerX = width / 2f
     }
     fun changeColor(color: Int) {
-        currentColor = color
-        paint.color = currentColor
+        newColor = color
+        paint.color = newColor
     }
     fun addShape(color: Int, size: Float, path: Path) {
         shapes.add(ShapeData(Path(currentShape), color, size))
