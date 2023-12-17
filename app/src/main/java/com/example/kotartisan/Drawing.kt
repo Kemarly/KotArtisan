@@ -2,7 +2,7 @@ package com.example.kotartisan
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.graphics.Path
+//import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
@@ -55,10 +55,10 @@ class Drawing : AppCompatActivity() {
         undoButton = findViewById(R.id.undoButton)
         redoButton = findViewById(R.id.redoButton)
 
-        starButton = findViewById(R.id.starButton)
+       /* starButton = findViewById(R.id.starButton)
         circleButton = findViewById(R.id.circleButton)
         squareButton = findViewById(R.id.squareButton)
-        triangleButton = findViewById(R.id.triangleButton)
+        triangleButton = findViewById(R.id.triangleButton)*/
 
         redButton = findViewById(R.id.redButton)
         orangeButton = findViewById(R.id.orangeButton)
@@ -101,10 +101,10 @@ class Drawing : AppCompatActivity() {
         undoButton.setOnClickListener { drawingView.undo() }
         redoButton.setOnClickListener { drawingView.redo() }
 
-        starButton.setOnClickListener { drawStar() }
+        /*starButton.setOnClickListener { drawStar() }
         triangleButton.setOnClickListener { drawTriangle() }
         squareButton.setOnClickListener { drawSquare() }
-        circleButton.setOnClickListener { drawCircle() }
+        circleButton.setOnClickListener { drawCircle() }*/
 
         redButton.setOnClickListener { drawingView.changeColor(Color.RED) }
         orangeButton.setOnClickListener { drawingView.changeColor(Color.rgb(250, 130, 20)) }
@@ -161,7 +161,7 @@ class Drawing : AppCompatActivity() {
         }
     }
 
-    private fun drawStar() {
+    /*private fun drawStar() {
         val starColor = drawingView.newColor
         val starSize = drawingView.paths.size
         val starPath = createStarPath()
@@ -261,7 +261,7 @@ private fun createCirclePath(): Path {
     val path = Path()
     path.addCircle(centerX, centerY, 5f, Path.Direction.CW)
     return path
-}
+}*/
 private fun handleHoverEvent(event: MotionEvent?, message: String) {
     when (event?.action) {
         MotionEvent.ACTION_HOVER_ENTER -> showTooltip(message)
