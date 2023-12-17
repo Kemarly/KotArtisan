@@ -54,10 +54,10 @@ class Drawing : AppCompatActivity() {
         undoButton = findViewById(R.id.undoButton)
         redoButton = findViewById(R.id.redoButton)
 
-        /*starButton = findViewById(R.id.starButton)
+        starButton = findViewById(R.id.starButton)
         circleButton = findViewById(R.id.circleButton)
         squareButton = findViewById(R.id.squareButton)
-        triangleButton = findViewById(R.id.triangleButton)*/
+        triangleButton = findViewById(R.id.triangleButton)
 
         redButton = findViewById(R.id.redButton)
         orangeButton = findViewById(R.id.orangeButton)
